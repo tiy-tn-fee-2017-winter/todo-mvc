@@ -5,3 +5,20 @@
 // @import 'font-awesome';
 @import 'box-sizing';
 @import 'index';
+
+.footer {
+  display: flex;
+  height: auto;
+
+  > * {
+    position: relative;
+    float: none;
+    flex-basis: 0;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  .filters {
+    margin: auto;
+  }
+}
