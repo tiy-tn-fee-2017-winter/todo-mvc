@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "completed": true,
+      "description": "Taste Javascript",
+      "createdAt": "???",
+      "_id": "abc"
+    },
+    {
+      "completed": false,
+      "description": "Buy a unicorn",
+      "createdAt": "2017-01-01::12:00:00",
+      "_id": "1234"
+    }
+  ]
+}
