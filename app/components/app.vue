@@ -14,22 +14,9 @@
         <ul class="todo-list">
           <!-- These are here just to show the structure of the list items -->
           <!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-          <li class="completed">
-            <div class="view">
-              <input class="toggle" type="checkbox" checked>
-              <label>Taste JavaScript</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" value="Create a TodoMVC template">
-          </li>
-          <li>
-            <div class="view">
-              <input class="toggle" type="checkbox">
-              <label>Buy a unicorn</label>
-              <button class="destroy"></button>
-            </div>
-            <input class="edit" value="Rule the web">
-          </li>
+          <task-item v-for="task in tasks"
+            v-on:toggle="toggle"
+            v-bind:task="task"></task-item>
         </ul>
       </section>
       <!-- This footer should hidden by default and shown when there are todos -->
@@ -65,9 +52,14 @@
 
 <script>
 import store from '../store';
-import { createTask } from '../actions';
+import { createTask, toggleTask } from '../actions';
+
+import TaskItem from './task-item.vue';
 
 export default {
+  components: {
+    TaskItem,
+  },
   data() {
     return {
       newTaskDescription: '',
@@ -80,6 +72,10 @@ export default {
       store.dispatch(createTask(this.newTaskDescription));
 
       this.newTaskDescription = '';
+    },
+
+    toggle(id) {
+      store.dispatch(toggleTask(id));
     }
   },
 };

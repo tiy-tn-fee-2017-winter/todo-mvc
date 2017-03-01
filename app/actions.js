@@ -3,8 +3,8 @@ export function createTask(description) {
     type: 'TASK@CREATE_COMPLETE',
     data: {
       description,
-      _id: new Date(), // This will get replaced by the server
-      createdAt: new Date(),
+      _id: (new Date()).toString(), // This will get replaced by the server
+      createdAt: (new Date()).toString(),
       completed: false,
     },
   };
