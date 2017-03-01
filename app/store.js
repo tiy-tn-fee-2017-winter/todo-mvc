@@ -15,6 +15,8 @@ const store = createStore(
   )
 );
 
-const revue = new Revue(Vue, store);
+export default store;
 
-export default revue;
+// const revue = new Revue(Vue, store);
+//
+// export default revue;

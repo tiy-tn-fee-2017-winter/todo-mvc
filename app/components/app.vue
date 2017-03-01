@@ -2,13 +2,17 @@
   <div class="">
     <ul>
       <counter-button
-        v-bind:number="number"
-        v-on:change="increment"></counter-button>
+        v-for="(z, index) in counters"
+        v-bind:number="z"
+        v-on:change="increment(index)"></counter-button>
     </ul>
+
+    <button v-on:click="addCounter">Add Counter</button>
   </div>
 </template>
 
 <script>
+import store from '../store';
 import CounterButton from './counter-button.vue';
 
 export default {
@@ -16,16 +20,34 @@ export default {
   components: {
     CounterButton,
   },
+
   data() {
     return {
-      number: 0,
+      counters: store.getState().counters,
     };
   },
 
+  created() {
+    // Update the state of our component every time
+    // Redux senses a change in the force
+    store.subscribe(() => {
+      this.counters = store.getState().counters;
+    });
+  },
+
   methods: {
-    increment() {
-      this.number += 1;
-    }
+    increment(index) {
+      store.dispatch({
+        type: 'COUNTER@INCREMENT',
+        index,
+      });
+    },
+
+    addCounter() {
+      store.dispatch({
+        type: 'COUNTER@ADD_COUNTER',
+      });
+    },
   },
 };
 </script>
