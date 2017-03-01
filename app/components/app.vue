@@ -47,7 +47,9 @@
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed">Clear completed</button>
+        <div class="clear-size">
+          <button class="clear-completed">Clear completed</button>
+        </div>
       </footer>
     </section>
     <footer class="info">
