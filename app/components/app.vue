@@ -3,7 +3,9 @@
     <section class="todoapp">
       <header class="header">
         <h1>todos</h1>
-        <input class="new-todo" placeholder="What needs to be done?" autofocus>
+        <form v-on:submit.prevent="addTask">
+          <input class="new-todo" placeholder="What needs to be done?" autofocus v-model="newTaskDescription">
+        </form>
       </header>
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main" v-if="tasks.length > 0">
@@ -63,16 +65,22 @@
 
 <script>
 import store from '../store';
+import { createTask } from '../actions';
 
 export default {
   data() {
     return {
+      newTaskDescription: '',
       tasks: this.$select('tasks'),
     };
   },
 
   methods: {
+    addTask() {
+      store.dispatch(createTask(this.newTaskDescription));
 
+      this.newTaskDescription = '';
+    }
   },
 };
 </script>
