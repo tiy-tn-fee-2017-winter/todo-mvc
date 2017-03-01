@@ -23,16 +23,11 @@ export default {
 
   data() {
     return {
-      counters: store.getState().counters,
+      // The `counters` property of my component
+      // will be updated any time `counters` changes
+      // in the Redux store
+      counters: this.$select('counters'),
     };
-  },
-
-  created() {
-    // Update the state of our component every time
-    // Redux senses a change in the force
-    store.subscribe(() => {
-      this.counters = store.getState().counters;
-    });
   },
 
   methods: {
