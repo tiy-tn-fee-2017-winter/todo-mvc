@@ -6,7 +6,7 @@
         <input class="new-todo" placeholder="What needs to be done?" autofocus>
       </header>
       <!-- This section should be hidden by default and shown when there are todos -->
-      <section class="main">
+      <section class="main" v-if="tasks.length > 0">
         <input class="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
@@ -31,7 +31,7 @@
         </ul>
       </section>
       <!-- This footer should hidden by default and shown when there are todos -->
-      <footer class="footer">
+      <footer class="footer" v-if="tasks.length > 0">
         <!-- This should be `0 items left` by default -->
         <span class="todo-count"><strong>0</strong> item left</span>
         <!-- Remove this if you don't implement routing -->
@@ -62,9 +62,12 @@
 </template>
 
 <script>
+import store from '../store';
+
 export default {
   data() {
     return {
+      tasks: this.$select('tasks'),
     };
   },
 
