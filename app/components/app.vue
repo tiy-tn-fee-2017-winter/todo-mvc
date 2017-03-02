@@ -52,7 +52,7 @@
 
 <script>
 import store from '../store';
-import { createTask, toggleTask } from '../actions';
+import { createTask, toggleTask, findAllTask } from '../actions';
 
 import TaskItem from './task-item.vue';
 
@@ -60,6 +60,11 @@ export default {
   components: {
     TaskItem,
   },
+
+  created() {
+    store.dispatch(findAllTask());
+  },
+
   data() {
     return {
       newTaskDescription: '',

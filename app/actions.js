@@ -32,10 +32,16 @@ export function updateTask(task) {
   };
 }
 
-export function findAllTask(data = []) {
-  return {
-    type: 'TASK@FINDALL_COMPLETE',
-    data,
+export function findAllTask() {
+  return (dispatch) => {
+    fetch('http://tiny-tn.herokuapp.com/collections/todo-ryan')
+    .then(r => r.json())
+    .then((data) => {
+      dispatch({
+        type: 'TASK@FINDALL_COMPLETE',
+        data,
+      });
+    });
   };
 }
 
