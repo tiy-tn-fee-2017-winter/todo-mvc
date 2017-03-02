@@ -1,12 +1,20 @@
 export function createTask(description) {
-  return {
-    type: 'TASK@CREATE_COMPLETE',
-    data: {
-      description,
-      _id: (new Date()).toString(), // This will get replaced by the server
-      createdAt: (new Date()).toString(),
-      completed: false,
-    },
+  return (dispatch) => {
+    fetch('http://tiny-tn.herokuapp.com/collections/todo-ryan', {
+      method: 'POST',
+      body: JSON.stringify({
+        description,
+        createdAt: (new Date()).toString(),
+        completed: false,
+      }),
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' }
+    }).then(r => r.json())
+      .then((data) => {
+        dispatch({
+          type: 'TASK@CREATE_COMPLETE',
+          data,
+        });
+      });
   };
 }
 
